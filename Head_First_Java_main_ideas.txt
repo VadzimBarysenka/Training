@@ -1,0 +1,14 @@
+1st charter's main ideas:
+ 1. How java works (source code, compiler, bytecode, JVM)
+ 2. Code structure in java (Class, method, statament)
+ 3. Statements and cycles (for and while, if/else) (while, do-while, for)
+
+2nd charter's main ideas:
+ 1. A bit about object oriented programming (inheritance?)
+ 2. Objects (variables (state: object knows) and methods (behavior: object does))
+ 3. Objects and classes (class is like object's constructor or "template" for objects.) 
+
+3hd charter's main ideas:
+ 1. Types of variables (Primitive and Reference)
+ 2. How declare, create, initialize and reference to object
+ 3. Array of references and objects
