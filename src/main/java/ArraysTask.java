@@ -9,6 +9,7 @@ public class ArraysTask {
         num[2] = 3;
         num[3] = 5;
         num[4] = 8;
+        int[][] multiNums = {{9, 8, 7, 6}, {5, 4, 2, 1}};
     }
 
 }
