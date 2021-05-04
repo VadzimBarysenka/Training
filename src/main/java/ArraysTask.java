@@ -10,6 +10,12 @@ public class ArraysTask {
         num[3] = 5;
         num[4] = 8;
         int[][] multiNums = {{9, 8, 7, 6}, {5, 4, 2, 1}};
+        int[][] multiArr = new int[2][2];
+        multiArr[0][0] = 1;
+        multiArr[0][1] = 3;
+        multiArr[1][0] = 5;
+        multiArr[1][1] = 9;
+        System.out.println(multiArr[0][0]);
     }
 
 }
