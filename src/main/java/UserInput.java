@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInput {
@@ -15,8 +16,10 @@ public class UserInput {
             System.out.print("You've entered: ");
             System.out.print(Arrays.toString(array));
             System.out.println();
-        } catch (Exception e) {
+        } catch (InputMismatchException ex) {
             System.out.println("You've entered not a number");
+            return;
         }
+        System.out.print("Is it still working?");
     }
 }
