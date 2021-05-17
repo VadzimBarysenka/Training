@@ -17,9 +17,10 @@ public class UserInput {
             System.out.print(Arrays.toString(array));
             System.out.println();
         } catch (InputMismatchException ex) {
-            System.out.println("You've entered not a number");
-            return;
+            System.out.print("[Probably you've entered not a number] ");
+            throw new InputMismatchException("Incorrect Input");
         }
-        System.out.print("Is it still working?");
+        System.out.print("Working or not working?");
     }
 }
+
