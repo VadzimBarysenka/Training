@@ -3,13 +3,8 @@ import java.util.Arrays;
 public class TurnArray {
     public static void main(String[] args) {
         int[][] original = new int[][]{{1, 2, 3}, {5, 6, 7}, {9, 10, 11}, {12, 13, 14}, {15, 16, 17}, {18, 19, 20}, {21, 22, 23}};
-        int[][] turned = turn(original);
-        for (int i = 0; i < turned.length; i++) {
-            for (int j = 0; j < turned[i].length; j++) {
-                System.out.print(turned[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
+        int[][] result = turn(original);
+        TurnArray.display(result);
     }
 
     static int[][] turn(int[][] original) {
@@ -23,5 +18,14 @@ public class TurnArray {
             }
         }
         return result;
+    }
+
+    static void display(int result[][]) {
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[i].length; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.print("\n");
+        }
     }
 }
