@@ -4,7 +4,8 @@ public class TurnArray {
     public static void main(String[] args) {
         int[][] original = new int[][]{{1, 2, 3}, {5, 6, 7}, {9, 10, 11}, {12, 13, 14}, {15, 16, 17}, {18, 19, 20}, {21, 22, 23}};
         int[][] result = turn(original);
-        TurnArray.display(result);
+        turn(result);
+        display(result);
     }
 
     static int[][] turn(int[][] original) {
@@ -21,11 +22,11 @@ public class TurnArray {
     }
 
     static void display(int result[][]) {
-        for (int i = 0; i < result.length; i++) {
-            for (int j = 0; j < result[i].length; j++) {
-                System.out.print(result[i][j] + " ");
+        for (int[] row : result) {
+            for (int x : row) {
+                System.out.print(x + " ");
             }
-            System.out.print("\n");
+            System.out.println("");
         }
     }
 }
