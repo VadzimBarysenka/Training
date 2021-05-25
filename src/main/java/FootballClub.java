@@ -1,11 +1,11 @@
 public class FootballClub {
-    String name;
-    int titleNumber;
-    int sellBudget;
-    double budget;
+    public String name;
+    public int titleNumber;
+    protected int sellBudget;
+    protected double budget;
 
 
-    public FootballClub(String name, int titleNumber, int sellBudget) {
+    public  FootballClub(String name, int titleNumber, int sellBudget) {
         this.name = name;
         this.titleNumber = titleNumber;
         this.sellBudget = sellBudget;
@@ -20,23 +20,10 @@ public class FootballClub {
 
     }
 
-    public FootballClub() {
+    public  FootballClub() {
         name = "Unknown";
         titleNumber = 0;
         sellBudget = 10;
-
-    }
-
-    public static void main(String[] arg) {
-        FootballClub firstClub = new FootballClub("first", 5, 100);
-        FootballClub secondClub = new FootballClub(30.1, "second");
-        int newTitle = firstClub.titleNumber;
-        firstClub.sellBudget = firstClub.sellPlayer(166);
-        int transferBuy = firstClub.buyPlayer(77, 257);
-        firstClub.playTitle();
-        firstClub.checkTitle(newTitle);
-        secondClub.budget = secondClub.buyPlayer(13.2, 56.7);
-
 
     }
 
