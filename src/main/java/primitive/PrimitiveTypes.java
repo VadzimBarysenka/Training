@@ -1,3 +1,4 @@
+package primitive;
 public class PrimitiveTypes {
     public static void main(String[] args) {
         int i = 30000;
