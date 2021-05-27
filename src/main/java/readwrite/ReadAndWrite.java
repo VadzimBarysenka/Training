@@ -1,5 +1,7 @@
 package readwrite;
 
+import array.TurnArray;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,22 +9,18 @@ import java.io.PrintStream;
 
 public class ReadAndWrite {
     public static void main(String args[]) throws Exception {
-        Scanner input = new Scanner (new File("D:\\training\\file.txt"));
-        String l = input.nextLine();
-        String [] num = l.split(" ");
+        Scanner input = new Scanner(new File("D:\\training\\file.txt"));
         int row = 0;
         int col = 0;
-        while(input.hasNextLine())
-        {
+        while (input.hasNextLine()) {
             row++;
             Scanner colReader = new Scanner(input.nextLine());
-            while(colReader.hasNextInt())
-            {
+            while (colReader.hasNextInt()) {
                 col++;
                 colReader.next();
             }
         }
-        input = new Scanner (new File("D:\\training\\file.txt"));
+        input = new Scanner(new File("D:\\training\\file.txt"));
         int[][] myArray = new int[row][col];
         while (input.hasNextLine()) {
             for (int i = 0; i < myArray.length; i++) {
@@ -32,25 +30,9 @@ public class ReadAndWrite {
                 }
             }
         }
-
         //int[][] result = TurnArray.turn(myArray);
-        //TurnArray.display(result);
+        //TurnArray.display(myArray);
         //write(result);
         //System.out.println(l.length);
-    }
-
-    static void write(int[][] result) {
-        try (
-                PrintStream output = new PrintStream(new File("D:\\training\\file2.txt"));) {
-            for (int i = 0; i < result.length; i++) {
-                String s = "";
-                for (int j = 0; j < result[i].length; j++) {
-                    s += result[i][j] + " ";
-                }
-                output.println(s);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }
