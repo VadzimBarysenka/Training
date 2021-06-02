@@ -1,12 +1,11 @@
 package readwrite;
 
-import java.io.File;
 import java.io.PrintStream;
 
 public class WriteFile {
 
-    public static void writeToFile(int[][] array) throws Exception {
-        PrintStream output = new PrintStream(new File("test2"));
+    public static void writeToFile(String fileName, int[][] array) throws Exception {
+        PrintStream output = new PrintStream(fileName);
         {
             for (int i = 0; i < array.length; i++) {
                 String s = "";

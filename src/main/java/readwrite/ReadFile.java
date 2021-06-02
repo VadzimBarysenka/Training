@@ -9,8 +9,8 @@ public class ReadFile {
     public static int[][] readFromFile(String fileName) throws Exception {
         File file = new File(fileName);
         BufferedReader input = new BufferedReader(new FileReader(file));
-        int row = row("test");
-        int col = col("test");
+        int row = row(fileName);
+        int col = col(fileName);
         int[][] myArray = new int[row][col];
         for (int i = 0; i < row && input.ready(); i++) {
             String[] st = input.readLine().split(" ");
@@ -22,10 +22,8 @@ public class ReadFile {
     }
 
     static int row(String fileName) throws Exception {
-        File file = new File(fileName);
-        BufferedReader input = new BufferedReader(new FileReader("test"));
+        BufferedReader input = new BufferedReader(new FileReader(fileName));
         int row = 0;
-        int col = 0;
         while (input.readLine() != null) {
             row++;
         }
@@ -33,11 +31,8 @@ public class ReadFile {
     }
 
     static int col(String fileName) throws Exception {
-        File file = new File(fileName);
-        BufferedReader input = new BufferedReader(new FileReader("test"));
-        int row = 0;
-        int col = 0;
-        input = new BufferedReader(new FileReader("test"));
+        BufferedReader input = new BufferedReader(new FileReader(fileName));
+        int col;
         String line = input.readLine();
         String[] strs = line.trim().split(" ");
         col = strs.length;
