@@ -1,9 +1,28 @@
 package football;
 
+import java.util.ArrayList;
+
 public class FootballClub {
     private String name;
     private int titleNumber;
     private int budget;
+    ArrayList<String> squad = new ArrayList<>();
+
+    public FootballClub(String name, int titleNumber, int budget) {
+        this.name = name;
+        this.titleNumber = titleNumber;
+        this.budget = budget;
+    }
+
+    public FootballClub(String name) {
+        this.name = name;
+    }
+
+    public FootballClub() {
+        name = "Unknown";
+        titleNumber = 0;
+        budget = 10;
+    }
 
     public int getTitleNumber() {
         return titleNumber;
@@ -17,52 +36,30 @@ public class FootballClub {
         return budget;
     }
 
-    public void setbBudget(int budget) {
+    public void setBudget(int budget) {
         this.budget = budget;
     }
 
-    public FootballClub(String name, int titleNumber, int budget) {
-        this.name = name;
-        this.titleNumber = titleNumber;
-        this.budget = budget;
-
-
+    public void sellPlayer(String playerName) {
+        budget = budget + FootballPlayer.playerPrice;
+        squad.remove(playerName);
     }
 
-    public FootballClub(String name) {
-        this.name = name;
+    public void buyPlayer(String playerName) {
+        budget = budget - FootballPlayer.playerPrice;
+        squad.add(playerName);
     }
-
-    public FootballClub() {
-        name = "Unknown";
-        titleNumber = 0;
-        budget = 10;
-    }
-
-    public void sellPlayer(int price) {
-        budget = budget + price;
-    }
-
-    public void buyPlayer(int price) {
-        budget = budget - price;
-    }
-/*
-    public double buyPlayer(double price, double transferBudget) {
-        double b;
-        b = transferBudget - price;
-        return b;
-    }
-
-*/
 
     public void playTitle() {
-        if (budget >= 100) {
+        int b = 100;
+        if (budget >= b) {
             titleNumber++;
         }
     }
 
     public void checkTitle() {
-        if (titleNumber >= 7) {
+        int t = 7;
+        if (titleNumber >= t) {
             System.out.println(name + " plays in Super League");
         } else {
             System.out.println(name + " does not play in Super League");
