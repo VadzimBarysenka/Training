@@ -1,12 +1,13 @@
 package football;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class FootballClub {
-    private String name;
+    private final String name;
     private int titleNumber;
     private int budget;
-    ArrayList<String> squad = new ArrayList<>();
+    Set<FootballPlayer> squad = new HashSet<>();
+    FootballPlayer player = new FootballPlayer();
 
     public FootballClub(String name, int titleNumber, int budget) {
         this.name = name;
@@ -40,14 +41,14 @@ public class FootballClub {
         this.budget = budget;
     }
 
-    public void sellPlayer(String playerName) {
-        budget = budget + FootballPlayer.playerPrice;
-        squad.remove(playerName);
+    public void sellPlayer(FootballPlayer FootballPlayer) {
+        budget = budget + FootballPlayer.getPlayerPrice();
+        squad.remove(FootballPlayer);
     }
 
-    public void buyPlayer(String playerName) {
-        budget = budget - FootballPlayer.playerPrice;
-        squad.add(playerName);
+    public void buyPlayer(FootballPlayer FootballPlayer) {
+        budget = budget - FootballPlayer.getPlayerPrice();
+        squad.add(FootballPlayer);
     }
 
     public void playTitle() {

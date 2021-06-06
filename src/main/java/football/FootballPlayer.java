@@ -1,12 +1,9 @@
 package football;
 
 public class FootballPlayer {
-    public static int playerPrice;
+    private int playerPrice;
     private String playerName;
 
-    public FootballPlayer(String playerName) {
-        this.playerName = playerName;
-    }
 
     public int getPlayerPrice() {
         return playerPrice;
@@ -15,4 +12,12 @@ public class FootballPlayer {
     public void setPlayerPrice(int playerPrice) {
         this.playerPrice = playerPrice;
      }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
 }
