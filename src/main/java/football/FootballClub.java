@@ -3,7 +3,7 @@ package football;
 import java.util.*;
 
 public class FootballClub {
-    private final String name;
+    private String name;
     private int titleNumber;
     private int budget;
     Set<FootballPlayer> squad = new HashSet<>();
@@ -25,6 +25,13 @@ public class FootballClub {
         budget = 10;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
     public int getTitleNumber() {
         return titleNumber;
     }
