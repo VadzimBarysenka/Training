@@ -1,8 +1,8 @@
 package football;
 
 public class FootballPlayer {
-    private int playerPrice;
     private String playerName;
+    private int playerPrice;
 
 
     public int getPlayerPrice() {
@@ -11,7 +11,7 @@ public class FootballPlayer {
 
     public void setPlayerPrice(int playerPrice) {
         this.playerPrice = playerPrice;
-     }
+    }
 
     public String getPlayerName() {
         return playerName;

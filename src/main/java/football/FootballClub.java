@@ -6,8 +6,7 @@ public class FootballClub {
     private String name;
     private int titleNumber;
     private int budget;
-    Set<FootballPlayer> squad = new HashSet<>();
-    FootballPlayer player = new FootballPlayer();
+    private Set<FootballPlayer> squad = new HashSet<>();
 
     public FootballClub(String name, int titleNumber, int budget) {
         this.name = name;
@@ -29,9 +28,10 @@ public class FootballClub {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
+
     public int getTitleNumber() {
         return titleNumber;
     }
@@ -48,26 +48,38 @@ public class FootballClub {
         this.budget = budget;
     }
 
-    public void sellPlayer(FootballPlayer FootballPlayer) {
-        budget = budget + FootballPlayer.getPlayerPrice();
-        squad.remove(FootballPlayer);
+    public Set<FootballPlayer> getSquad() {
+        return squad;
     }
 
-    public void buyPlayer(FootballPlayer FootballPlayer) {
-        budget = budget - FootballPlayer.getPlayerPrice();
-        squad.add(FootballPlayer);
+    public void setSquad(Set<FootballPlayer> squad) {
+        this.squad = squad;
+    }
+
+    public void sellPlayer(FootballPlayer footballPlayer) {
+        budget = budget + footballPlayer.getPlayerPrice();
+        squad.remove(footballPlayer);
+    }
+
+    public void buyPlayer(FootballPlayer footballPlayer) {
+        if (budget >= footballPlayer.getPlayerPrice()) {
+            budget = budget - footballPlayer.getPlayerPrice();
+            squad.add(footballPlayer);
+        } else {
+            System.out.println(name + ", calm down you are not PSG");
+        }
     }
 
     public void playTitle() {
-        int b = 100;
-        if (budget >= b) {
+        int defaultBudget = 100;
+        if (budget >= defaultBudget) {
             titleNumber++;
         }
     }
 
     public void checkTitle() {
-        int t = 7;
-        if (titleNumber >= t) {
+        int defaultTitle = 7;
+        if (titleNumber >= defaultTitle) {
             System.out.println(name + " plays in Super League");
         } else {
             System.out.println(name + " does not play in Super League");
