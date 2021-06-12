@@ -5,13 +5,13 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class OperationJSON {
-    public static FootballClub ReadJSON(String fileName) throws IOException {
+public class OperationJson {
+    public static FootballClub ReadJson(String fileName) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(new File(fileName), FootballClub.class);
     }
 
-    public static void WriteJSON(FootballClub footballClub, String fileName) {
+    public static void WriteJson(FootballClub footballClub, String fileName) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             mapper.writeValue(new File(fileName), footballClub);

@@ -6,7 +6,7 @@ import java.io.IOException;
 public class FootballApp {
     public static void main(String[] arg) throws IOException {
         FootballClub secondClub = new FootballClub("two", 7, 2);
-        FootballClub c1 = OperationJSON.ReadJSON("src/main/resources/test.json");
+        FootballClub c1 = OperationJson.ReadJson("src/main/resources/test.json");
         FootballPlayer player1 = new FootballPlayer();
         FootballPlayer player2 = new FootballPlayer();
         FootballPlayer player3 = new FootballPlayer();
@@ -24,6 +24,6 @@ public class FootballApp {
         secondClub.buyPlayer(player3);
         c1.buyPlayer(player4);
         System.out.println("Current budget " + secondClub.getBudget() + " $");
-        OperationJSON.WriteJSON(secondClub, "src/main/resources/test2.json");
+        OperationJson.WriteJson(secondClub, "src/main/resources/test2.json");
     }
 }
