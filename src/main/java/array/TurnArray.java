@@ -10,7 +10,7 @@ public class TurnArray {
         display(result);
     }
 
-    static int[][] turn(int[][] original) {
+    public static int[][] turn(int[][] original) {
         int row = original[0].length;
         int col = original.length;
         int[][] result = new int[row][col];
@@ -23,7 +23,7 @@ public class TurnArray {
         return result;
     }
 
-    static void display(int result[][]) {
+    public static void display(int result[][]) {
         for (int[] row : result) {
             for (int x : row) {
                 System.out.print(x + " ");
