@@ -1,0 +1,11 @@
+{
+  "name": "nc1",
+  "titleNumber": 13,
+  "budget": 3,
+  "squad": [
+    {
+      "playerName": "p1",
+      "playerPrice": 16
+    }
+  ]
+}
