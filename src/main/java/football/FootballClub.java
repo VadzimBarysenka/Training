@@ -1,5 +1,6 @@
 package football;
 
+import java.io.IOException;
 import java.util.*;
 
 public class FootballClub {
@@ -51,22 +52,29 @@ public class FootballClub {
     public Set<FootballPlayer> getSquad() {
         return squad;
     }
-
-    public void setSquad(Set<FootballPlayer> squad) {
-        this.squad = squad;
+    public void setSquad(FootballPlayer footballPlayer) {
+        squad.add(footballPlayer);
     }
 
-    public void sellPlayer(FootballPlayer footballPlayer) {
-        budget = budget + footballPlayer.getPlayerPrice();
-        squad.remove(footballPlayer);
+    public void sellPlayer(FootballPlayer footballPlayer) throws Exception {
+        if (!squad.isEmpty()) {
+            if (squad.contains(footballPlayer)) {
+                budget = budget + footballPlayer.getPlayerPrice();
+                squad.remove(footballPlayer);
+            } else {
+                System.out.println("no such player in the squad");
+            }
+        } else {
+            throw new Exception("club has no players");
+        }
     }
 
-    public void buyPlayer(FootballPlayer footballPlayer) {
+    public void buyPlayer(FootballPlayer footballPlayer) throws Exception {
         if (budget >= footballPlayer.getPlayerPrice()) {
             budget = budget - footballPlayer.getPlayerPrice();
             squad.add(footballPlayer);
         } else {
-            System.out.println(name + ", calm down you are not PSG");
+            throw new IOException(name + " has no money to buy " + footballPlayer.getPlayerName());
         }
     }
 

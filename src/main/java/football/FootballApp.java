@@ -1,12 +1,11 @@
 package football;
 
 
-import java.io.IOException;
+import java.util.Iterator;
 
 public class FootballApp {
-    public static void main(String[] arg) throws IOException {
-        FootballClub secondClub = new FootballClub("two", 7, 2);
-        FootballClub c1 = OperationJson.ReadJson("src/main/resources/test.json");
+    public static void main(String[] arg) throws Exception {
+        FootballClub secondClub = new FootballClub("two", 7, 200);
         FootballPlayer player1 = new FootballPlayer();
         FootballPlayer player2 = new FootballPlayer();
         FootballPlayer player3 = new FootballPlayer();
@@ -19,11 +18,19 @@ public class FootballApp {
         player2.setPlayerPrice(1);
         player3.setPlayerPrice(3);
         player4.setPlayerPrice(4);
+        secondClub.setSquad(player1);
+        secondClub.setSquad(player1);
         secondClub.buyPlayer(player1);
         secondClub.buyPlayer(player2);
         secondClub.buyPlayer(player3);
-        c1.buyPlayer(player4);
+        secondClub.buyPlayer(player4);
+       // secondClub.sellPlayer(player1);
+        OperationJson.WriteJson(secondClub,"src/main/resources/test2.json");
         System.out.println("Current budget " + secondClub.getBudget() + " $");
-        OperationJson.WriteJson(secondClub, "src/main/resources/test2.json");
+        Iterator<FootballPlayer> i=secondClub.getSquad().iterator();
+        while(i.hasNext())
+        {
+            System.out.println(i.next());
+        }
     }
 }
