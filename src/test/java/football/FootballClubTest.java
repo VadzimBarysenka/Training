@@ -1,85 +1,112 @@
 package football;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FootballClubTest {
+    private static final String CLUB_NAME = "FC Club";
     private static final int BUDGET = 110;
-    private static final int PLAYER1_PRICE = 20;
-    private static final int PLAYER2_PRICE = 122;
-    private static final int PLAYER3_PRICE = 12;
+    private static final int EXPECTED_BUDGET = 130;
+    private static final String PLAYER_NAME = "coolplayer";
+    private static final int PLAYER_ONE_PRICE = 20;
+    private static final int PLAYER_TWO_PRICE = 122;
+    private static final int PLAYER_THREE_PRICE = 12;
     private static final int TITLES = 10;
     private static final int CLUB_TITLES1 = 9;
-    private static final int CLUB_TITLES2 = 1;
+    private static final int TEAM_SIZE = 1;
 
 
     @Test
-    void buyPlayer() throws Exception {
-        FootballClub club1 = new FootballClub();
-        FootballPlayer player1 = new FootballPlayer();
+    void buyPlayerEnoughBudget() {
+        FootballClub club = new FootballClub();
+        club.setBudget(BUDGET);
+        FootballPlayer player = new FootballPlayer();
+        player.setPlayerPrice(PLAYER_ONE_PRICE);
+        int RESULT = BUDGET - PLAYER_ONE_PRICE;
+
+        club.buyPlayer(player);
+
+        assertEquals(RESULT, club.getBudget());
+    }
+
+    @Test
+    void buyPlayerNotEnoughBudget() {
+        FootballClub club = new FootballClub();
+        club.setName(CLUB_NAME);
+        club.setBudget(BUDGET);
         FootballPlayer player2 = new FootballPlayer();
-        club1.setName("FC Club ");
-        int RESULT = BUDGET - PLAYER1_PRICE;
+        player2.setPlayerName(PLAYER_NAME);
+        player2.setPlayerPrice(PLAYER_TWO_PRICE);
 
-        club1.setBudget(BUDGET);
-        player1.setPlayerPrice(PLAYER1_PRICE);
-        player2.setPlayerPrice(PLAYER2_PRICE);
-        club1.buyPlayer(player1);
-        club1.buyPlayer(player2);
-
-        assertAll(
-                "test",
-                //() -> assertEquals((" has not money to buy "), s),
-                () -> assertEquals(RESULT, club1.getBudget())
-        );
+        Exception exception = Assertions.assertThrows(RuntimeException.class,
+                () -> club.buyPlayer(player2));
+        assertEquals((club.getName() + " has no money to buy " + player2.getPlayerName()), exception.getMessage());
     }
 
     @Test
-    void sellExistingPlayerTest() throws Exception {
-        FootballClub club1 = new FootballClub();
-        FootballPlayer player1 = new FootballPlayer();
-        club1.setBudget(BUDGET);
-        player1.setPlayerPrice(PLAYER1_PRICE);
-        club1.setSquad(player1);
+    void sellExistingPlayerTest() {
+        FootballClub club = new FootballClub();
+        club.setBudget(BUDGET);
+        FootballPlayer player = new FootballPlayer();
+        player.setPlayerPrice(PLAYER_ONE_PRICE);
+        Set<FootballPlayer> team = new HashSet<>();
+        team.add(player);
+        club.setSquad(team);
 
-        club1.sellPlayer(player1);
+        club.sellPlayer(player);
 
-        assertEquals(130, club1.getBudget());
+        assertEquals(EXPECTED_BUDGET, club.getBudget());
     }
 
     @Test
-    void sellNotExistingPlayerTest() throws Exception {
-        FootballClub club1 = new FootballClub();
+    void sellNotExistingPlayerTest() {
+        FootballClub club = new FootballClub();
+        club.setBudget(BUDGET);
         FootballPlayer player1 = new FootballPlayer();
+        player1.setPlayerPrice(PLAYER_ONE_PRICE);
         FootballPlayer player3 = new FootballPlayer();
-        club1.setBudget(BUDGET);
-        player1.setPlayerPrice(PLAYER1_PRICE);
-        player3.setPlayerPrice(PLAYER3_PRICE);
-        club1.setSquad(player3);
-        String s = "no such player in the squad";
+        player3.setPlayerPrice(PLAYER_THREE_PRICE);
+        Set<FootballPlayer> team = new HashSet<>();
+        team.add(player3);
+        club.setSquad(team);
 
-        club1.sellPlayer(player1);
-
-        assertEquals(("no such player in the squad"), s);
+        Exception exception = Assertions.assertThrows(RuntimeException.class,
+                () -> club.sellPlayer(player1));
+        assertEquals("no such player in the squad", exception.getMessage());
     }
 
+    @Test
+    void sellWhenNoPlayers() {
+        FootballClub club = new FootballClub();
+        club.setName(CLUB_NAME);
+        club.setBudget(BUDGET);
+        FootballPlayer player1 = new FootballPlayer();
+        player1.setPlayerPrice(PLAYER_ONE_PRICE);
+
+        Exception exception = Assertions.assertThrows(RuntimeException.class,
+                () -> club.sellPlayer(player1));
+        assertEquals((club.getName() + " has no players"), exception.getMessage());
+    }
 
     @Test
     void playTitle() {
-        FootballClub club1 = new FootballClub();
-        club1.setBudget(BUDGET);
-        club1.setTitleNumber(CLUB_TITLES1);
+        FootballClub club = new FootballClub();
+        club.setBudget(BUDGET);
+        club.setTitleNumber(CLUB_TITLES1);
 
-        club1.playTitle();
+        club.playTitle();
 
-        assertEquals(club1.getTitleNumber(), TITLES);
+        assertEquals(club.getTitleNumber(), TITLES);
 
     }
 
@@ -116,16 +143,19 @@ class FootballClubTest {
     }
 
     @Test
-    void setSquad() throws Exception {
+    void setSquad() {
         FootballClub club = new FootballClub();
-        FootballPlayer player1 = new FootballPlayer();
         club.setBudget(BUDGET);
-        player1.setPlayerPrice(PLAYER3_PRICE);
+        FootballPlayer player1 = new FootballPlayer();
+        player1.setPlayerName(PLAYER_NAME);
+        player1.setPlayerPrice(PLAYER_THREE_PRICE);
+        FootballPlayer player2 = new FootballPlayer();
+        player2.setPlayerName(PLAYER_NAME);
+        player2.setPlayerPrice(PLAYER_THREE_PRICE);
 
-        club.setSquad(player1);
-        club.setSquad(player1);
         club.buyPlayer(player1);
+        club.buyPlayer(player2);
 
-        assertEquals(club.getSquad().size(), 1);
+        assertEquals(TEAM_SIZE, club.getSquad().size());
     }
 }
