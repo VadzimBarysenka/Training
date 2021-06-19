@@ -1,6 +1,7 @@
 package football;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FootballClub {
     private String name;
@@ -19,7 +20,7 @@ public class FootballClub {
     }
 
     public FootballClub() {
-        name = "Unknown";
+        name = "DefaultClub";
         titleNumber = 0;
         budget = 10;
     }
@@ -57,8 +58,16 @@ public class FootballClub {
     }
 
     public void sellPlayer(FootballPlayer footballPlayer) {
-        budget = budget + footballPlayer.getPlayerPrice();
-        squad.remove(footballPlayer);
+        if (!squad.isEmpty()) {
+            if (squad.contains(footballPlayer)) {
+                budget = budget + footballPlayer.getPlayerPrice();
+                squad.remove(footballPlayer);
+            } else {
+                throw new RuntimeException("no such player in the squad");
+            }
+        } else {
+            throw new RuntimeException(getName() + " has no players");
+        }
     }
 
     public void buyPlayer(FootballPlayer footballPlayer) {
@@ -66,7 +75,7 @@ public class FootballClub {
             budget = budget - footballPlayer.getPlayerPrice();
             squad.add(footballPlayer);
         } else {
-            System.out.println(name + ", calm down you are not PSG");
+            throw new RuntimeException(getName() + " has no money to buy " + footballPlayer.getPlayerName());
         }
     }
 
