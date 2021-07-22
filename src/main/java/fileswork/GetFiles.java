@@ -13,13 +13,12 @@ public class GetFiles {
     public static void listFilesForFolder(final File folder) {
         try (Stream<Path> fileList = Files.walk(Paths.get(String.valueOf(folder)))) {
             List<String> result = fileList.filter(Files::isRegularFile)
-                    .filter(path -> path.toString().endsWith(".doc")||path.toString().endsWith(".json")||path.toString().endsWith(".txt"))
-                    .map(Path::getFileName)
+                    .filter(path -> path.toString().endsWith(".log")||path.toString().endsWith(".json")||path.toString().endsWith(".txt"))
                     .map(Path::toString)
                     .collect(Collectors.toList());
             result.forEach(System.out::println);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Some Error");
         }
     }
 }

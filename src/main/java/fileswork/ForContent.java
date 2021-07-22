@@ -11,11 +11,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ForContent {
-    public static void checkContent(final File folder, String search) throws IOException {
-        List<File> filesList = Files.walk(Paths.get(String.valueOf(folder)))
-                .filter(Files::isRegularFile)
-                .map(Path::toFile)
-                .collect(Collectors.toList());
+    public static void checkContent(final File folder, String search) {
+        try {
+            List<File> filesList = Files.walk(Paths.get(String.valueOf(folder)))
+                    .filter(Files::isRegularFile)
+                    .filter(path -> path.toString().endsWith(".log")||path.toString().endsWith(".json")||path.toString().endsWith(".txt"))
+                    .map(Path::toFile)
+                    .collect(Collectors.toList());
+
 
         System.out.println("Files that match:");
         BufferedReader files;
@@ -30,6 +33,9 @@ public class ForContent {
             if (sb.toString().contains(search)) {
                 System.out.println(file.getAbsolutePath());
             }
+        }
+        } catch (IOException e) {
+            throw new RuntimeException("Some Error");
         }
     }
 }
