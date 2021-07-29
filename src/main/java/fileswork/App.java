@@ -1,10 +1,16 @@
 package fileswork;
 
-import java.io.IOException;
+import java.util.Map;
 
 public class App {
-    public static void main(String[] args) throws IOException {
-        String path = "D:\\test";
-        FileClass test = new FileClass(path);
+    public static void main(String[] args) {
+        long time = System.currentTimeMillis();
+        String path = "path=";
+        String contains = "contains=";
+        String sort = "sort=weight";
+        Map<String, String> argMap = AppTestParser.mapOfArgs(args, AppTestParser.defaultArgs(path, contains, sort));
+        FileClass test = new FileClass(argMap.get("path"));
+        test.process(argMap.get("contains"), argMap.get("sort"));
+        System.out.println(System.currentTimeMillis() - time + " milliseconds spent for operation");
     }
 }
