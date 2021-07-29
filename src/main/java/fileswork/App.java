@@ -7,7 +7,7 @@ public class App {
         long time = System.currentTimeMillis();
         String path = "path=";
         String contains = "contains=";
-        String sort = "sort=weight";
+        String sort = "sort=";
         Map<String, String> argMap = AppTestParser.mapOfArgs(args, AppTestParser.defaultArgs(path, contains, sort));
         FileClass test = new FileClass(argMap.get("path"));
         test.process(argMap.get("contains"), argMap.get("sort"));
